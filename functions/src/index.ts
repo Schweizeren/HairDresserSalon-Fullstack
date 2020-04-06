@@ -1,13 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import {DependencyFactory} from './dependency-factory';
-
-const serviceAccount = require('../secret.json');
+// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
+const serviceAccount = require("../secret.json");
 const difa = new DependencyFactory();
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://fir-youknow.firebaseio.com'
+  databaseURL: "https://hairdresser-salon-1d12f.firebaseio.com"
 });
 
 exports.addOrderRemovesStock = functions.firestore
@@ -31,5 +31,5 @@ exports.newProduct = functions.firestore
 exports.topProductUpdated = functions.firestore
   .document('top-products/{prodId}')
   .onUpdate((snap, context) => {
-    return difa.getProductController().updatedTopProduct(snap, context);
+    return difa.getProductController().updatedTopProduct(snap, context)
   });

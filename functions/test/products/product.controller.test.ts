@@ -11,7 +11,7 @@ describe('ProductController', () => {
   beforeEach(() => {
     productServiceMock = new Mock<ProductService>();
     productServiceMock.setup(ps => ps.writeProducts('ab', productBefore, productAfter))
-      .returns(new Promise((resolve, reject) => {resolve()}));
+      .returns(new Promise((resolve, reject) => {resolve(); }));
     productController = new ProductControllerFirebase(productServiceMock.object());
   });
 
@@ -54,4 +54,4 @@ describe('ProductController', () => {
     await productController.writtenProducts(mockedChanged.object() as any, mockedContext.object() as any);
 
   });
-};
+});

@@ -20,6 +20,7 @@ describe('ProductService', () => {
     productService = new ProductService(productRepository.object(), stockRepository.object());
   });
 
+
   it('Product Service needs a StockRepository and a ProductRepository', () => {
     const productServiceDefined = new ProductService(productRepository.object(), stockRepository.object());
     expect(productServiceDefined).toBe(productServiceDefined);

@@ -13,5 +13,19 @@ export class RepositoryTestHelper {
       .returns(Promise.resolve(this.db.product1));
   }
 
+  getOrderRepositoryMock(): IMock<OrderRepository> {
+    return new Mock<OrderRepository>();
+  }
+
+  getStockRepositoryMock(): IMock<StockRepository> {
+    return new Mock<StockRepository>()
+      .setup(stockRepo => stockRepo.create(this.db.product1, 5))
+      .returns(Promise.resolve(this.db.stock1))
+      .setup(stockRepo => stockRepo.lowerStock(It.IsAny(), It.IsAny()))
+      .returns(Promise.resolve())
+      .setup(stockRepo => stockRepo.lowerStocks(It.IsAny()))
+      .returns(Promise.resolve());
+  }
+
 
 }
