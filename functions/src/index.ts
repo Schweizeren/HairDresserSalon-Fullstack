@@ -7,7 +7,7 @@ const difa = new DependencyFactory();
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://hairdresser-salon-1d12f.firebaseio.com"
+  databaseURL: "https://fir-youknow.firebaseio.com"
 });
 
 exports.addOrderRemovesStock = functions.firestore

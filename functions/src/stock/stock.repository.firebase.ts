@@ -50,4 +50,15 @@ export class StockRepositoryFirebase implements StockRepository {
   db(): FirebaseFirestore.Firestore {
     return admin.firestore();
   }
+
+  deleteStock(uId: string): Promise<any> {
+    return this.db().doc(`${this.stockPath}/${uId}`).delete();
+  };
+
+  setProductName(product: Product): Promise<any> {
+    const stockCollection = this.db().collection(`${this.stockPath}`);
+    return stockCollection.doc(product.uId).update({
+      productName: product.name
+    })
+  }
 }

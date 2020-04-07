@@ -8,4 +8,8 @@ export interface StockRepository {
   lowerStock(product: Product, amount: number): Promise<void>;
 
   lowerStocks(orderLines: Orderline[]): Promise<void>;
+
+  setProductName(product: Product): Promise<any>;
+
+  deleteStock(uId: string): Promise<any>;
 }

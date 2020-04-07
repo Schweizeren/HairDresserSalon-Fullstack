@@ -4,10 +4,11 @@ import {Order} from '../../src/models/order';
 import {Orderline} from '../../src/models/orderline';
 
 export class DataTestHelper {
+
   product1: Product = {
     name: 'Product 1',
     uId: 'p1',
-    url: 'somewhere.com',
+    url: 'notfacebook.com',
     price: 22,
     timesPurchased: 0
   };
@@ -15,7 +16,7 @@ export class DataTestHelper {
   product2: Product = {
     name: 'Product 2',
     uId: 'p2',
-    url: 'somewhereelse.com',
+    url: 'hey.com',
     price: 23,
     timesPurchased: 0
   };
@@ -50,4 +51,24 @@ export class DataTestHelper {
     orderLines: [this.ol1, this.ol2],
     visible: false
   };
+
+  getProduct1(): Product {
+    return this.product1;
+  }
+
+  getProduct2(): Product {
+    return this.product2;
+  }
+
+  getStock1(): Stock {
+    return this.stock1;
+  }
+
+  getOrder1(): Order {
+    return this.order1;
+  }
+
+  getOrder2(): Order {
+    return this.order2;
+  }
 }

@@ -37,8 +37,46 @@ export class ProductService {
     });
   }
 
+  updateStockProductName(
+    prodId: string,
+    productBefore: Product,
+    productAfter: Product): Promise<void> {
+    if(productAfter){
+      if(!productAfter.name || productAfter.name === ''){
+        console.log('order', productAfter);
+        throw new TypeError('You need to fill out the name of the product');
+        return Promise.reject(productAfter);
+      }
+      return this.stockRepository.setProductName({
+        uId: prodId,
+        name: productAfter.name,
+        url: productAfter.url,
+        price: productAfter.price,
+        timesPurchased: productAfter.timesPurchased
+      });
+    } else {
+      return this.stockRepository.deleteStock(prodId);
+    }
+  }
+
   async create(product: Product): Promise<Product> {
     await this.stockRepository.create(product, 5);
     return Promise.resolve(product);
+  }
+
+  buy(product: Product): Product {
+    if(product) {
+      product.timesPurchased = product.timesPurchased +1;
+      return product;
+    }
+    return undefined as any;
+  }
+
+  refund(product: Product): Product {
+    if(product) {
+      product.timesPurchased = product.timesPurchased -1;
+      return product;
+    }
+    return undefined as any;
   }
 }
